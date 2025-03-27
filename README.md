@@ -14,7 +14,7 @@
 - *Image:* A blueprint for a container (like a template).
 - *Container:* A running instance of an image.
 - *Dockerfile:* A script that defines how to build an image.
-- *Docler Compose:* A tool to define and run multiple containers easily.
+- *Docker Compose:* A tool to define and run multiple containers easily.
 
 ### 4. Basic Docker Commands
 - "docker build -t my_image ." -> Build an image from a Dockerfile.
@@ -31,8 +31,7 @@
 
 ### 6. Networking in Docker
 - Containers communicate through Docker networks.
-- Example: A web server (NGIIX) can talk to a database (MariaDB) through a shared network.
-
+- Example: A web server (NGINX) can talk to a database (MariaDB) through a shared network.
 
 ### 7. Volumes (Persistent Storage)
 - Containers are ephemeral (data is lost when restarted)
