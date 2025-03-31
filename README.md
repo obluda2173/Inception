@@ -75,3 +75,58 @@ services:
 |Portability|Runs consistently on any system with Docker installed|Needs hypervision, OS compatibility may vary|
 
 > **Main advantage:** Docker provides a faster, more efficient and more portable solution compared to VM's, making it ideal for deploying and scaling applications.
+
+### Docker Networking???
+Docker networking allows containers to communicate with each other and with the outside world. It provides different network types, but the most common ones are:
+
++ **Bridge Network (Default):** Each container gets its own IP adress and can communicate with the other containers on the same network.
+Example: Containers running a web app and a database can talk to each other via container names instead of IP adresses.
++ **Host Network:** The Container shares the host machine's network, meaning it doesn't get an isolated IP.
++ **Overlay Networks:** used for communication between containers across different physical machines in a Docker Swarm.
++ **None:** No network access is provided to the container.
+
+In Docker Compose, services are automatically placed on the same network making communication easy without manual setup.
+
+Example of how two services (web and database) communicate:
+```
+services:
+	web:
+		image: my_web_app
+		networks:
+			- my_network
+
+	db:
+		image: postgres
+		networks:
+			- my_networks
+	
+networks:
+	my_networks:
+		drivers: bridge
+```
+Here, web can reach db using db as the hostname
+
+### 6. How to login into the Database & Verify It's not empty
+To access the database inside a Docker container, do:
+
+**Step 1:** Find the Running Database Container
+Run:
+```
+docker ps
+```
+
+Look for the container name or ID of your databasse (e.g., postgres or mysql).
+
+**Step 2:** Access the Database Container
+For MySQL:
+```
+docker exec -it <db_container_name> mysql -u <username> -p
+```
+
+**Step 3:** Check of the Database is Not Empty
+For MySQL:
+```
+SHOW TABLES;
+```
+
+If no tables are listed, the database is empty.
