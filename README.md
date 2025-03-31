@@ -41,3 +41,37 @@
 ### 8. Reverse Proxi (NGINX)
 - Direct traffic to the correct service (e.g. Web request -> Your web server)
 - Ensures security amd load balancing.
+
+
+## Q&A
+
+### 1. How Docker and Docker Compose work?
+- Docker is a tool that helps package applications and their dependencies into containers, which are lightweight, standalone environments. Each container runs an application with all the required files, libraries, and settings, ensuring it bahaves the same regardless of where it runs.
+- Docker Compose is a tool that allows you to manage multiple Docker contatiners as single application. Instead of running each container separately with individual commands, Docker Compose uses docker-compose.yml file to define all containers, their configurations, networks, and dependencies. Then, a single command (docker-compose up) starts everything at once.
+
+### 2. Difference Between a Docker Image with and Without Docker Compose?
+- Without Docker Compose:
+Runnign Docker image manually requires individual docker run commands, specifying ports, volumes, networks, and environment variables manually. Example:
+```
+docker run -d -p 80:80 --name my_container my_image
+```
+- With Docker Compose:
+You define the image, networking, and dependencies in docker-compose.yml. Then, all configurations are applied automatically when running docker-compose up. This is especially useful for multi-container applications. Example docker-compose.yml:
+```
+services:
+	web:
+		image: my_image
+		ports:
+			- "80:80"
+```
+
+### 3. Benefits of Docker Compared to Virtual Machines?
+| Feature | Docker Containers | Virtual Machines |
+|---|---|---|
+|Performance|Lightweight|Heavy, each VM has its own OS|
+|Startup Time|Starts in seconds|Takes minutes to boot|
+|Resource Usage|Low, uses host system's resources efficiently|High, requires dedicated CPU, RAM, and storage|
+|Isolation|Process-level isolation|Full OS-level isolation|
+|Portability|Runs consistently on any system with Docker installed|Needs hypervision, OS compatibility may vary|
+
+> **Main advantage:** Docker provides a faster, more efficient and more portable solution compared to VM's, making it ideal for deploying and scaling applications.
